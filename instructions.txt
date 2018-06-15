@@ -1,0 +1,8 @@
+Instructions for Photo Booth:
+
+- Click "Take Photos" button and wait for camera to load.
+- Take 4 photos (if you take more than 4, the last 4 will be used).
+- Close the camera app ("X" in top right corner).
+- Click "View Photostrip" to view or "Print Photostrip" to print your photos.
+    - If you clicked "View", close the preview before printing.
+- Please do not close the Photo Booth app window.

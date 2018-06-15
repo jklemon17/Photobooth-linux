@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /home/kyle/Programs/photobooth/
+##convert output.png -brightness-contrast +20 print_output.png
+lpr -o fit-to-page -Canon-MG7500 output.png

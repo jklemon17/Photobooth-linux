@@ -1,0 +1,42 @@
+#! /bin/bash
+GTKDIALOG=gtkdialog
+export MAIN_DIALOG='
+<window title="Photo Booth">
+ <vbox>
+  <hbox>
+    <vbox>
+      <hbox>
+        <button image-position="2">
+          <input file>"/usr/share/icons/Mint-X/emblems/96/emblem-camera.svg"</input>
+          <label>Take Photos</label>
+          <action>/home/kyle/Programs/photobooth/photoboothscript</action>
+        </button>
+      </hbox>
+    </vbox>
+    <vbox>
+      <hbox>
+        <button image-position="2">
+          <input file>"/usr/share/icons/Mint-X/mimetypes/96/media-image.svg"</input>
+          <action>/home/kyle/Programs/photobooth/photoboothview</action>
+          <label>View Photostrip</label>
+        </button>
+      </hbox>
+    </vbox>
+    <vbox>
+      <hbox>
+        <button image-position="2">
+          <input file>"/usr/share/icons/Mint-X/actions/96/gtk-print.svg"</input>
+          <action>/home/kyle/Programs/photobooth/photoboothprint</action>
+          <label>Print Photostrip</label>
+        </button>
+      </hbox>
+    </vbox>
+  </hbox>
+ </vbox>
+</window>
+'
+
+case $1 in
+-d | --dump) echo "$MAIN_DIALOG" ;;
+*) $GTKDIALOG --program=MAIN_DIALOG --center ;;
+esac

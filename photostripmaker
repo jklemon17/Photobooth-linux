@@ -1,0 +1,31 @@
+#!/bin/sh
+cd /home/kyle/Pictures/Webcam/
+
+mogrify -gravity Center -crop 720x720+0+0 +repage *.jpg
+mogrify -resize 318x318 -background black -extent 350x525 -gravity center *.jpg
+
+FILE="$(ls -t *.jpg | head -n1)"
+convert $FILE /home/kyle/Programs/photobooth/backgrounds/Unoblankgreen.png -compose over -gravity center -composite Cards/4green.png
+mv $FILE Originals
+
+FILE="$(ls -t *.jpg | head -n1)"
+convert $FILE /home/kyle/Programs/photobooth/backgrounds/Unoblankyellow.png -compose over -gravity center -composite Cards/3yellow.png
+mv $FILE Originals
+
+FILE="$(ls -t *.jpg | head -n1)"
+convert $FILE /home/kyle/Programs/photobooth/backgrounds/Unoblankblue.png -compose over -gravity center -composite Cards/2blue.png
+mv $FILE Originals
+
+FILE="$(ls -t *.jpg | head -n1)"
+convert $FILE /home/kyle/Programs/photobooth/backgrounds/Unoblankred.png -compose over -gravity center -composite Cards/1red.png
+mv $FILE Originals
+
+cd Cards
+montage *.png[350x525] -geometry 350x525+0+0 -background "#000000" -tile 2x output.png
+
+cd /home/kyle/Pictures/Webcam/
+mv Cards/output.png /home/kyle/Programs/photobooth
+
+mv Cards/*.png Cards/Old
+
+echo Done!

@@ -1,0 +1,41 @@
+#!/bin/sh
+##Move files and rename output so it won't override previous outputs
+DATE=$(date +"%Y%m%d%H%M")
+cd /home/kyle/Programs/photobooth/
+##mv *.jpg Originals
+mv output.png PhotoStrips/$DATE.png
+
+##Let user know the camera is loading
+zenity --notification --text "Camera is loading"
+##Open the webcam append
+cheese -w
+
+sh ./photostripmaker
+##Crop and resize photos
+##mogrify -gravity Center -crop 720x720+0+0 +repage *.jpg
+##mogrify -resize 318x318 *.jpg
+
+##Count .jpg files to determine output format
+##LOCATION="/home/kyle/Pictures/Webcam/"
+##FILECOUNT=0
+##DIRCOUNT=0
+##for item in $LOCATION/*.jpg ##The commented code would count ALL files (except hidden ones)
+##do
+##  if [ -f "$item" ]; then
+##    FILECOUNT=$((FILECOUNT+1))
+##  elif [ -d "$item" ]; then
+##    DIRCOUNT=$((DIRCOUNT+1))
+##  fi
+##done
+
+#echo "File count: " $FILECOUNT
+
+##Create output.png, dependent on number of photos taken
+##Cinderella Backgrounds
+##if [ $FILECOUNT -eq 3 ]; then
+##  convert *.jpg -splice 0x5 -background "#385597" -append -crop -0+5 output.png
+##  montage /home/kyle/Programs/photobooth/backgrounds/Cinderella3.png output.png -background "#385597" -geometry 400x1200+1+1 -tile 2x1 output.png
+##else
+##  montage *.jpg[400x400] -geometry 400x400+1+1 -background "#000000" -tile 2x output.png
+##  convert output.png /home/kyle/Programs/photobooth/backgrounds/Cinderella2.png -splice 0x5 -background "#000000" -append -crop -0+5 output.png
+##fi
